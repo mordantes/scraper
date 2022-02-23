@@ -2,7 +2,6 @@ import {Page} from "puppeteer";
 import { UlMenuList } from "../@types";
 
 
-
 export const parseMenu = async(page: Page) :Promise<UlMenuList[]> => {
     try{
         return await page.evaluate(() => {
@@ -22,7 +21,6 @@ export const parseMenu = async(page: Page) :Promise<UlMenuList[]> => {
             })
         })
     }catch(e){
-        console.error(e, 'evaluate error1')
         throw e
     }
 }

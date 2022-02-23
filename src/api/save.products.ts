@@ -4,7 +4,6 @@ import genFilename from "../utils/gen.filename"
 import { resolve } from 'path'
 
 
-
 export async function saveProducts(data: MongoProduct[] | ParsedProduct[]  , filename:FileName){
 	try{
 		if (process.env.BACKUP_DIR){
@@ -15,7 +14,6 @@ export async function saveProducts(data: MongoProduct[] | ParsedProduct[]  , fil
 			)
 		}else throw new Error('must declare path to local store')
 	}catch(e){
-		// console.log(e)
 		throw e
 	}
 }

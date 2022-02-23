@@ -1,9 +1,6 @@
 import {  MongoProduct , ParsedProduct} from "../@types";
 import { compareDate , stringToNumber} from "../utils";
 
-
-
-
 export const compareProducts = (parsed : ParsedProduct[], nested: MongoProduct[], date: Date) : MongoProduct[] => {
 			if (nested.length === 0 ) {
 				return parsed.map((parse:ParsedProduct)=> {
@@ -25,7 +22,6 @@ export const compareProducts = (parsed : ParsedProduct[], nested: MongoProduct[]
 				if (!exists){
 					return product
 				}else{
-					// console.log(exists)
 					const {price, ...otherProps} = exists
 					const existPrice = product.prices.some(val=> val.price === extractPrice(price, "old"))
 					const newOnePrices = !existPrice ? product.prices.concat([
@@ -43,7 +39,6 @@ export const compareProducts = (parsed : ParsedProduct[], nested: MongoProduct[]
 					return newOne
 				}
 			})
-		
 }
 
 
@@ -54,7 +49,6 @@ const findById = <T>(array:T[],id: number) : false | T=> {
     if (target === undefined) return false
     return target
 }
-
 
 const extractPrice = (price: string |  { old: string | number, new: string | number} , field : 'old' | 'new') => {
 	return typeof price === 'object' ? stringToNumber(price[field]) : stringToNumber(price)

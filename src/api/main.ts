@@ -43,14 +43,11 @@ export default async function Main(shopname:Shopname) {
 				await compareExecutor(uniq, new Date())
 				// save data locally (optional)
 				await saveProducts(uniq, 'products')
-
 			}catch(e){
 				console.log(e)
 				throw e
 			}
 		}
-
 		default : return null
-
 	}
 }

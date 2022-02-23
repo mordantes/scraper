@@ -4,22 +4,9 @@ import { ParsedProduct, UlMenuList } from "../@types"
 import {stopWatch} from '../utils'
 
 
-
-/** 
- * Require 
-		@uriArray UlMenuList[]
-		@workerName string 
-	
- * Return 
-		@result  Product[]
-
-*/
-
 export const executor = async (browser : Browser, uriArray : UlMenuList[], workerName: string) => {
 	try{
 		const result: ParsedProduct[] = [] 
-		// console.log('parse execuitor ')
-		
 		for (const menuLink of uriArray){
 			const menuTime = stopWatch(new Date())
 			const goods = await parsePage(browser, menuLink.uri)
@@ -37,7 +24,6 @@ export const executor = async (browser : Browser, uriArray : UlMenuList[], worke
 		return result
 
 	}catch(e){
-		// console.log(e)
 		throw e 
 	}
 

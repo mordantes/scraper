@@ -6,7 +6,6 @@ export async function parseProductsFromPage(
     page: Page
 ): Promise<ParsedProduct[]> {
     try{
-        // console.log('parse products ')
         const products: Omit<ParsedProduct, '_id'>[] =  await page.evaluate(() => {
             try{
                 const price: Omit<ParsedProduct, '_id'>[] = []
@@ -55,10 +54,7 @@ export async function parseProductsFromPage(
         })
         return products.map((e) => ({...e, _id : extractId(e.link)}))
     }catch(e){
-        // console.error(e, 'evaluate error3')
         throw e
-        // return []
-        // 
     }
   
 }
