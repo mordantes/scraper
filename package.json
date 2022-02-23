@@ -1,0 +1,32 @@
+{
+  "name": "shop-scraper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "tsc --build --clean",
+    "start": "node build/src/index.js",
+    "start:dev": "nodemon --exec ts-node src/index.ts",
+    "start:analyze": "ts-node src/api/offline.ts",
+    "start:bulk": "ts-node src/api/bulk.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/mongoose": "^5.11.97",
+    "@types/puppeteer": "^5.4.4",
+    "dotenv": "^16.0.0",
+    "git": "^0.1.5",
+    "mongoose": "^6.2.3",
+    "puppeteer": "^13.4.0",
+    "typescript": "^4.5.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.5.0",
+    "ts-node-dev": "^1.1.8",
+    "tsc": "^2.0.4"
+  }
+}
