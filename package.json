@@ -6,10 +6,13 @@
   "scripts": {
     "build": "tsc --build",
     "clean": "tsc --build --clean",
-    "start": "node build/src/index.js",
+    "start": "node build/index.js",
     "start:dev": "nodemon --exec ts-node src/index.ts",
-    "start:analyze": "ts-node src/api/offline.ts",
-    "start:bulk": "ts-node src/api/bulk.ts"
+    "start:analyze": "ts-node src/api/locals/detectChanges.ts",
+    "start:bulk": "ts-node src/api/locals/bulk.ts",
+    "start:f": "ts-node src/api/locals/fromFile.ts",
+    "start:a": "ts-node src/api/locals/analyze.ts",
+    "start:ce": "ts-node src/api/compare.executor.ts"
   },
   "keywords": [],
   "author": "",

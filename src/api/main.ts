@@ -27,25 +27,36 @@ export default async function Main(shopname:Shopname) {
 				const categories : UlMenuList[] = await parseMenu(page)
 				// await page.close()
 				await page.close()
-				//  * To increase api speed we start scraping in 2 copy of browsers
-				const first = categories.slice(0, (categories.length - categories.length % 2)/2)
-				const second = categories.slice((categories.length - categories.length % 2)/2)
-				// get products from parsed categories in 2 flows
+				// To increase api speed we start scraping in 2 copy of browsers
+				const first = [
+					...categories.slice(0,4), 
+					...categories.slice(16,24),
+				]
+
+				const second = [
+					...categories.slice(4,16), 
+				]
+				// get products from parsed categories in 2 work flows
 				const products = await Promise.all([
 					executor(browser,first, 'first worker'),
 					executor(browser,second, 'second worker')
 				])
 				// concat 2 arrays into result one 
-				const total = products.reduce((tally, curr) => tally.concat(...curr) , [])
+				const total = await Promise.all(
+					products.reduce((tally, curr) => {
+						 tally.push(...curr)
+						 return tally
+					}, [])
+				)
 				// on target shop some products have many categories, replace them
-				const uniq = removeDuplicates<ParsedProduct>(total)
-				// compare collected data with one stored in database 
-				await compareExecutor(uniq, new Date())
+				const uniq = removeDuplicates<ParsedProduct>(total, '_id')
 				// save data locally (optional)
 				await saveProducts(uniq, 'products')
+				// compare collected data with one stored in database 
+				await compareExecutor(uniq, new Date())
+
 			}catch(e){
 				console.log(e)
-				throw e
 			}
 		}
 		default : return null
