@@ -6,6 +6,10 @@
 /node_modules
 /.pnp
 .pnp.js
+/base
+/base2
+/src/api/locals
+
 
 # testing
 /coverage
