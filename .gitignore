@@ -2,3 +2,4 @@ node_modules
 base
 base2
 src/api/locals
+.env
