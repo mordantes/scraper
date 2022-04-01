@@ -17,6 +17,7 @@ const configStore = process.env;
 const puppeteer_1 = __importDefault(require("puppeteer"));
 const _1 = require(".");
 const utils_1 = require("../utils");
+const tlgrm_send_1 = require("./tlgrm.send");
 function Main(shopname) {
     return __awaiter(this, void 0, void 0, function* () {
         switch (shopname) {
@@ -51,6 +52,7 @@ function Main(shopname) {
                     const uniq = (0, utils_1.removeDuplicates)(total, '_id');
                     yield (0, _1.saveProducts)(uniq, 'products');
                     yield (0, _1.compareExecutor)(uniq, new Date());
+                    yield (0, tlgrm_send_1.InitMailer)();
                 }
                 catch (e) {
                     console.log(e);

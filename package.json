@@ -24,6 +24,7 @@
     "git": "^0.1.5",
     "mongoose": "^6.2.3",
     "puppeteer": "^13.4.0",
+    "telegraf": "^4.7.0",
     "typescript": "^4.5.5"
   },
   "devDependencies": {

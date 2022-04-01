@@ -4,6 +4,7 @@ import puppeteer from "puppeteer";
 import { compareExecutor,  executor, parseMenu, saveProducts } from ".";
 import { ParsedProduct, Shopname, UlMenuList } from "../@types";
 import { removeDuplicates } from "../utils";
+import { InitMailer } from "./tlgrm.send";
 
 
 
@@ -54,7 +55,7 @@ export default async function Main(shopname:Shopname) {
 				await saveProducts(uniq, 'products')
 				// compare collected data with one stored in database 
 				await compareExecutor(uniq, new Date())
-
+				await InitMailer()
 			}catch(e){
 				console.log(e)
 			}
